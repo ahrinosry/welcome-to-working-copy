@@ -1,0 +1,18 @@
+From fe6d834a571297b25ec7516430b8064c8b68908d Mon Sep 17 00:00:00 2001
+From: Bryan Ashe <bashe10628@aol.com>
+Date: Sun, 2 Jul 2017 05:22:11 -0700
+Subject: [PATCH] vpn
+
+---
+ examples/vpnac_secureproxy-1.3.4-fx.xpi | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 examples/vpnac_secureproxy-1.3.4-fx.xpi
+
+diff --git a/examples/vpnac_secureproxy-1.3.4-fx.xpi b/examples/vpnac_secureproxy-1.3.4-fx.xpi
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/examples/vpnac_secureproxy-1.3.4-fx.xpi
+--
+Working Copy 3.0.0
+
