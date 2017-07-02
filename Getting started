@@ -1,0 +1,107 @@
+<?php
+/**
+*
+* @version: $Id: index.php,v 1.7 2006/04/11 11:22:23 andrew Exp $
+*
+* @copyright 2002-2003 Andrew Arefieff
+*
+* @email: andrew@mt.lviv.ua
+*
+* This file is part of Web Shell v4.x.x
+*
+* This program may be used in compiled form in any way you desire.
+* This program may be redistributed unmodified by any means PROVIDING it is
+* not sold for profit without the authors written consent, and
+* providing that this notice and the authors name is included.
+*
+* Web Shell is provided 'as is' with no expressed or implied warranty.
+* The author accepts no liability if it causes any damage to your computer.
+*
+* Expect Bugs.
+* Please let me know of any bugs/mods/improvements.
+* and I will try to fix/incorporate them into this file.
+*
+**/
+if(isset($_GET['info'])){
+/*
+INFO_GENERAL	1	 The configuration line, php.ini location, build date, Web Server, System and more.
+INFO_CREDITS	2	PHP Credits. See also phpcredits().
+INFO_CONFIGURATION	4	Current Local and Master values for PHP directives. See also ini_get().
+INFO_MODULES	8	Loaded modules and their respective settings.
+INFO_ENVIRONMENT	16	Environment Variable information that's also available in $_ENV.
+INFO_VARIABLES	32	Shows all predefined variables from EGPCS (Environment, GET, POST, Cookie, Server).
+INFO_LICENSE	64	PHP License information. See also the license faq
+*/
+	switch($_GET['info']){
+	case INFO_GENERAL:
+			phpinfo(INFO_GENERAL);
+			break;
+	case INFO_CREDITS:
+			phpinfo(INFO_CREDITS);
+			break;
+	case INFO_CONFIGURATION:
+			phpinfo(INFO_CONFIGURATION);
+			break;
+	case INFO_MODULES:
+			phpinfo(INFO_MODULES);
+			break;
+	case INFO_ENVIRONMENT:
+			phpinfo(INFO_ENVIRONMENT);
+			break;
+	case INFO_VARIABLES:
+			phpinfo(INFO_VARIABLES);
+			break;
+	case INFO_LICENSE:
+			phpinfo(INFO_LICENSE);
+			break;
+	default:
+			phpinfo(INFO_ALL);
+	}
+ exit;
+}
+
+require ('config.php');
+require ('functions.php');
+require_once("locale.php");
+iniReader(INIFILE);
+$lc = new locale($lang, view);
+define("CHARSET", $lc->GetCharset());
+
+echo DOCTYPE_FS;
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?=CHARSET?>">
+<link rel='shortcut icon' href='gfx/webshell.gif' type='image/gif'>
+<meta name="GENERATOR" content="<?=getenv("SERVER_SOFTWARE");?>">
+<meta name="AUTHOR" content="Andrew Arefieff <andrew@mt.lviv.ua>">
+<meta HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+<meta HTTP-EQUIV='Cache-Control' CONTENT='no-cache'>
+<title>WebShell :: Welcome <?=AUTH_USER?></title>
+<script>
+<!--
+if (window!= top)
+top.location.href=location.href
+// -->
+</script>
+<script language='JavaScript' src='js/b64.js'></script>
+<script language='JavaScript' src='js/wndz.js'></script>
+<script language='JavaScript' src='js/main.js'></script>
+</head>
+<frameset framespacing='0' border='0' frameborder='0' rows='22,*,22'>
+  <frame name="menu" scrolling="no" noresize marginwidth="0" marginheight="0" src="menu.php">
+  <frameset framespacing="0" border="0" frameborder="0" cols="54%,*">
+    <frame name="left" marginwidth="2" marginheight="2" scrolling="auto" src="actions.php?m=dir">
+    <frame name="right" marginwidth="2" marginheight="2" scrolling="auto" src="actions.php?m=sysinfo">
+  </frameset>
+  <frameset framespacing="0" border="0" frameborder="0" cols="250,*">
+	<frame name="progress" scrolling="no" noresize marginwidth="0" marginheight="0" src="progress.php">
+  	<frame name="components" scrolling="no" noresize marginwidth="0" marginheight="0" src="components.php">
+  </frameset>
+  <noframes>
+  <body topmargin="0" leftmargin="0">
+  <p>This page uses frames, but your browser doesn't support them.</p>
+  </body>
+  </noframes>
+</frameset>
+</html>
